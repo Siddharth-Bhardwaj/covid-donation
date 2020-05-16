@@ -38,7 +38,7 @@ function MyTabs() {
       initialRouteName="Donate"
       activeColor="white"
       labelStyle={{ fontSize: 12 }}
-      barStyle={{backgroundColor:'black'}}
+      barStyle={{backgroundColor:'#3267fa'}}
     >
       <Tab.Screen
         
