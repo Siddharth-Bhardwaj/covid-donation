@@ -3,6 +3,10 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './components/Login'
+import SignUp from './components/SignUp'
+import Reset from './components/Reset'
 
 
 function Donate() {
@@ -75,13 +79,18 @@ function MyTabs() {
   );
 }
 
-
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
     
     <NavigationContainer>
-      <MyTabs />
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
+        <Stack.Screen name="Sign Up" component={SignUp} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
+        <Stack.Screen name="Reset" component={Reset} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
+        <Stack.Screen name="Dashboard" component={MyTabs}></Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
     
   );
