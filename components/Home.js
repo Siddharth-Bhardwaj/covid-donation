@@ -65,8 +65,8 @@ class Home extends React.Component {
       var width = Math.round(Dimensions.get("window").width);
     }
     return (
-      <View>
-        <Button title="Logout" onPress={this.logOut}></Button>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>PM Cares</Text>
       </View>
     );
   }
