@@ -21,13 +21,21 @@ logIn = async () => {
 
   var username = this.state.username;
   var password = this.state.password;
-  var url = "http://172.20.10.3:80/login/?username="+username+"&password="+password;
-  var resp = await axios.get(url);
-  console.log(resp);
+  // var url = "http://172.20.10.3:80/login/?username="+username+"&password="+password;
+  // var resp = await axios.get(url);
+  // console.log(resp);
   console.log(this.state.username);
   console.log(this.state.password);
+  this.props.navigation.dispatch(
+    CommonActions.reset({
+      index: 0,
+      routes: [
+        { name: 'Dashboard'
+        },
+      ],
+    })
+  );
   }
-
 
   componentDidMount () {
     if (Platform.OS === 'ios') {

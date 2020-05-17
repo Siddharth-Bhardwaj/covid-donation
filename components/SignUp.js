@@ -9,7 +9,10 @@ const { StatusBarManager } = NativeModules
 class Signup extends React.Component
 {
   state = {
-    statusBarHeight : 0
+    statusBarHeight : 0,
+    username : '',
+    password : '',
+    email :  ''
 };
 
   componentDidMount () {
@@ -17,7 +20,6 @@ class Signup extends React.Component
       StatusBarManager.getHeight(response =>
           this.setState({statusBarHeight: response.height})
       )
-  
       this.listener = StatusBarIOS.addListener('statusBarFrameWillChange',
         (statusBarData) =>
           this.setState({statusBarHeight: statusBarData.frame.height})
@@ -30,6 +32,51 @@ class Signup extends React.Component
       this.listener.remove()
     }
   }
+
+  signUp = async() => {
+    console.log("Username : "+this.state.username)
+    console.log("Password : "+this.state.password)
+    console.log("Email : "+this.state.email)
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!reg.test(this.state.email))
+    {
+      Alert.alert(
+        "Incorrect E-mail",
+        "The E-mail ID that you entered is invalid !",
+        [
+          {
+            text: "Ok",
+            onPress: () => console.log("Ok pressed")
+          }
+        ],
+        { cancelable: false }
+      );
+      this.setState({username:'',email:'',password:''})
+    }
+    else
+    {
+    Alert.alert(
+      "Account Registration",
+      "Your account has been successfully created !",
+      [
+        {
+          text: "Ok",
+          onPress: () => console.log("Ok pressed")
+        }
+      ],
+      { cancelable: false }
+    );
+    this.props.navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { name: 'Dashboard'
+          },
+        ],
+      })
+    );
+  }
+}
 
 navLogIn = () => {
 this.props.navigation.navigate('Login');
@@ -61,16 +108,16 @@ this.props.navigation.navigate('Login');
             />
         </View>
       <View style={{alignItems:'center',marginTop:height*0.10}}>
-        <TextInput style={{height:40,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27}} placeholder="Username" placeholderTextColor="#949494"></TextInput>
+        <TextInput value={this.state.username} onChangeText={(text) => this.setState({username : text})} style={{height:40,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27}} placeholder="Username" placeholderTextColor="#949494"></TextInput>
       </View>
       <View style={{alignItems:'center',marginTop:height*0.05}}>
-        <TextInput secureTextEntry={true} style={{height:38,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27}} placeholder="Password" placeholderTextColor="#949494"></TextInput>
+        <TextInput value={this.state.password} onChangeText={(text) => this.setState({password : text})} secureTextEntry={true} style={{height:38,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27}} placeholder="Password" placeholderTextColor="#949494"></TextInput>
       </View>
       <View style={{alignItems:'center',marginTop:height*0.05}}>
-        <TextInput style={{height:38,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27}} placeholder="Email" placeholderTextColor="#949494"></TextInput>
+        <TextInput value={this.state.email} onChangeText={(text) => this.setState({email : text})} style={{height:38,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27}} placeholder="Email" placeholderTextColor="#949494"></TextInput>
       </View>
       <View style={{alignItems:'center',marginTop:height*0.075}}>
-        <TouchableOpacity style={{borderWidth:1,width:width*0.3,borderRadius:5,height:height*0.05,backgroundColor:'#4a78ff',borderColor:'#4a78ff'}}>
+        <TouchableOpacity onPress={this.signUp} style={{borderWidth:1,width:width*0.3,borderRadius:5,height:height*0.05,backgroundColor:'#4a78ff',borderColor:'#4a78ff'}}>
           <View style={{flex:1,justifyContent:'center'}}>
             <Text style={{fontSize:20,textAlign:'center',color:'white'}}>Sign Up</Text>
           </View>

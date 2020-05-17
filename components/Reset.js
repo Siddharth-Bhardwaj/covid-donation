@@ -6,14 +6,28 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const { StatusBarManager } = NativeModules
 
 
-
-
-
 class Reset extends React.Component
 {
 state = {
-    statusBarHeight : 0
+    statusBarHeight : 0,
+    username : ''
 };
+
+  resetPassword = async () => {
+    console.log("Entered username/email : "+this.state.username)
+    Alert.alert(
+      "Password Reset",
+      "An email has been sent to your registered e-mail ID !",
+      [
+        {
+          text: "Ok",
+          onPress: () => console.log("Ok pressed")
+        }
+      ],
+      { cancelable: false }
+    );
+    this.setState({username:''})
+  }
 
   navLogIn = () => {
     this.props.navigation.navigate('Login');
@@ -65,10 +79,10 @@ state = {
               />
           </View>
         <View style={{alignItems:'center',marginTop:height*0.15}}>
-          <TextInput style={{height:35,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27,paddingBottom:10}} placeholder="Username or Email" placeholderTextColor="#949494"></TextInput>
+          <TextInput value={this.state.username} onChangeText={(text) => this.setState({username : text})} style={{height:35,backgroundColor:'white',borderBottomWidth:2,borderColor:'gray',width:width*0.85,fontSize:27,paddingBottom:10}} placeholder="Username or Email" placeholderTextColor="#949494"></TextInput>
         </View>
         <View style={{alignItems:'center',marginTop:height*0.07}}>
-          <TouchableOpacity style={{borderWidth:1,width:width*0.25,borderRadius:5,height:height*0.05,backgroundColor:'#4a78ff',borderColor:'#4a78ff'}}>
+          <TouchableOpacity onPress={this.resetPassword} style={{borderWidth:1,width:width*0.25,borderRadius:5,height:height*0.05,backgroundColor:'#4a78ff',borderColor:'#4a78ff'}}>
             <View style={{flex:1,justifyContent:'center'}}>
               <Text style={{fontSize:20,textAlign:'center',color:'white'}}>Reset</Text>
             </View>

@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Reset from './components/Reset'
+import Home from './components/Home'
 
 
 function Donate() {
@@ -47,7 +48,7 @@ function MyTabs() {
       <Tab.Screen
         
         name="Donate"
-        component={Donate}
+        component={Home}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
