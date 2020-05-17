@@ -8,31 +8,9 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Reset from './components/Reset'
 import Home from './components/Home'
-
-
-function Donate() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Donate</Text>
-    </View>
-  );
-}
-
-function PMCares() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>PM Cares</Text>
-    </View>
-  );
-}
-
-function Contact() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>LandLine and other contact details</Text>
-    </View>
-  );
-}
+import PMCares from './components/PMCares'
+import Contact from './components/Contact'
+import Profile from './components/Profile'
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -72,6 +50,16 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Contact Us',
           tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="phone" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
         }}
@@ -90,7 +78,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
         <Stack.Screen name="Sign Up" component={SignUp} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
         <Stack.Screen name="Reset" component={Reset} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
-        <Stack.Screen name="Dashboard" component={MyTabs}></Stack.Screen>
+        <Stack.Screen name="Dashboard" component={MyTabs} options={{ title: 'Home'}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
     
