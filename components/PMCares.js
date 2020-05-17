@@ -6,7 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const { StatusBarManager } = NativeModules
 
 
-class Home extends React.Component {
+class PMCares extends React.Component {
 
 state = {
     statusBarHeight : 0
@@ -55,11 +55,11 @@ render()
       var width = (Math.round(Dimensions.get('window').width))
     }
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>PM Cares</Text>
-      </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>PM Cares</Text>
+        </View>
     )
 }
 }
 
-export default Home;
+export default PMCares;
