@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Platform, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -72,9 +72,11 @@ const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    
+  
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
         <Stack.Screen name="Login" component={Login} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
         <Stack.Screen name="Sign Up" component={SignUp} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>
         <Stack.Screen name="Reset" component={Reset} options={{ title: '' ,headerTransparent:'true'}}></Stack.Screen>

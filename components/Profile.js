@@ -9,7 +9,8 @@ const { StatusBarManager } = NativeModules
 class Profile extends React.Component {
 
 state = {
-    statusBarHeight : 0
+    statusBarHeight : 0,
+    name : 'Sid'
 }
 
     componentDidMount () {
