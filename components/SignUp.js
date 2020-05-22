@@ -123,7 +123,7 @@ this.props.navigation.navigate('Login');
           </View>
         </TouchableOpacity>
       </View>
-      <View style={{flexDirection:'row',alignSelf:'center',marginTop:height*0.087}}>
+      <View style={{flexDirection:'row',alignSelf:'center',marginTop:height*0.08}}>
 
         <Text style={{fontSize:18}}>Already have an account? </Text>
         <TouchableOpacity onPress={this.navLogIn}>
